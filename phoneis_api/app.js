@@ -24,5 +24,5 @@ phoneController(server);
 
 // Start server listener
 server.listen(1337, () => {
-  console.log('%s listening at %s', server.name, server.url);
+  console.log(`${server.name} listening at ${server.url}`);
 });
