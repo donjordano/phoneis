@@ -1,7 +1,7 @@
 {
-  "name": "phoneis",
+  "name": "phoneis_api",
   "version": "1.0.0",
-  "description": "Test devices booking system",
+  "description": "Test devices booking system API",
   "main": "app.js",
   "dependencies": {
     "fonoapi-nodejs": "^0.1.1",
