@@ -1,5 +1,7 @@
 const helpers = require('../config/helpers');
 const Phone = require('../models/Phone');
+const fonoApi = require('../fonoapi/fonoapi');
+const demoPhoneList = require('../config/phonesList');
 
 module.exports = (server) => {
   // GET ===>
@@ -51,6 +53,25 @@ module.exports = (server) => {
     });
   });
 
+  // Store phones from list - jsut for the demo
+  server.post('/sotre/phones/from/list', (req, res, next) => {
+    Phone.find({}, (err, phones) => {
+      if (phones.length > 0) {
+        helpers.failure(res, next, 'Phones list is already stored', 500);
+      } else {
+        fonoApi.storePhonesData(
+          demoPhoneList.phones,
+          () => {
+            helpers.success(res, next, 'Phones stored successfully');
+          },
+          () => {
+            helpers.failure(res, next, 'Storing phones list is unsuccessfully, please check server logs');
+          }
+        );
+      }
+    });
+  });
+
   // PUT ===>
   // update phone
   server.put('/phone/:id', (req, res, next) => {
@@ -69,7 +90,7 @@ module.exports = (server) => {
       for (var field in updates) {
         phone[field] = updates[field];
       }
-      
+
       phone.save((error) => {
         if (error) {
           helpers.failure(res, next, phone);
@@ -78,4 +99,7 @@ module.exports = (server) => {
       });
     });
   });
+
+
+  // DELETE ===>
 };
