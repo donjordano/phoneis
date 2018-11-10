@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const { ObjectId } = Schema;
+const { ObjectId } = mongoose.Schema.Types;
+
 const PhoneSchema = new Schema({
   id: ObjectId,
   name: String,
@@ -10,6 +11,9 @@ const PhoneSchema = new Schema({
     type: Map,
     of: String,
   },
+  avaliable: Boolean,
+  bookedAt: Date,
+  user: ObjectId,
 });
 
 const Phone = mongoose.model('phones', PhoneSchema);
