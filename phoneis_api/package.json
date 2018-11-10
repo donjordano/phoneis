@@ -4,6 +4,7 @@
   "description": "Test devices booking system",
   "main": "app.js",
   "dependencies": {
+    "fonoapi-nodejs": "^0.1.1",
     "mongo-observer": "^1.2.1",
     "mongoose": "^5.3.11",
     "restify": "^7.2.2",
