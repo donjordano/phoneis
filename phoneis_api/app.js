@@ -3,6 +3,9 @@ const restify = require('restify');
 const plugins = require('restify-plugins');
 const restifyValidator = require('restify-validator');
 const mongoose = require('mongoose');
+const setupController = require('./src/controllers/setupController');
+const userRoutes = require('./src/routes/userRoutes');
+const phoneRoutes = require('./src/routes/phoneRoutes');
 
 // Create Restify Server
 const server = restify.createServer();
@@ -13,14 +16,13 @@ const dbConnection = require('./src/config/dbConnection');
 // Connect to mongo
 mongoose.connect(dbConnection.getMongoConnection(), { useNewUrlParser: true });
 
-// Controllers
-const setupController = require('./src/controllers/setupController');
-const userController = require('./src/controllers/userController');
-const phoneController = require('./src/controllers/phoneController');
 // Setup controllers
+// TODO: To check the validator later, I had to disable it to work quickly on the rest
 setupController(server, plugins, restifyValidator);
-userController(server);
-phoneController(server);
+
+// Applay routes
+userRoutes.applyRoutes(server, '/user');
+phoneRoutes.applyRoutes(server, '/phone');
 
 // Start server listener
 server.listen(1337, () => {
