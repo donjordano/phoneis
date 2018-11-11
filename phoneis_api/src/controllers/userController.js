@@ -84,6 +84,6 @@ module.exports = {
     })(req, res, next);
   },
 
-  // PUT ===>
-  // DELETE ===>
+  // PUT : methods
+  // DELETE: methods
 };

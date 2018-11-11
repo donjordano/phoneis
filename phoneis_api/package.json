@@ -24,7 +24,9 @@
     "eslint-plugin-import": "^2.14.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-prod": "NODE_ENV=production pm2-runtime /app/app.js"
   },
   "repository": {
     "type": "git",

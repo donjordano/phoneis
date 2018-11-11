@@ -1,5 +1,4 @@
 // This is only for demo purposes
-
 module.exports = {
   phones: [
     'Samsung Galaxy S9',

@@ -3,23 +3,17 @@ const Phone = require('../models/Phone');
 const fonoApi = require('../fonoapi/fonoapi');
 const demoPhoneList = require('../config/phonesList');
 
-module.exports = (server) => {
-  // GET ===>
-  // GET all phones
-  server.get('/phones', (req, res, next) => {
+module.exports = {
+
+  // GET: all phones
+  listAllPhones: (req, res, next) => {
     Phone.find({}, (err, phones) => {
       helpers.success(res, next, phones);
     });
-  });
+  },
 
-  // GET phone by id
-  server.get('/phone/:id', (req, res, next) => {
-    // // validate non empty id
-    // req.assert('id', 'Id is required').notEmpty();
-    // const errors = req.validationErrors();
-    // if (errors) {
-    //   helpers.failure(res, next, errors[0], 400);
-    // }
+  // GET: phone by id
+  getPhone: (req, res, next) => {
     Phone.findOne({ _id: req.params.id }, (err, phone) => {
       if (err) {
         helpers.failure(res, next, 'Sommethig went wrong when fetchig phone from database', 500);
@@ -31,13 +25,10 @@ module.exports = (server) => {
 
       helpers.success(res, next, phone);
     });
-  });
+  },
 
-  // POST ===>
-  // create phone
-  server.post('/phone', (req, res, next) => {
-    // validations 
-
+  // POST: create phone
+  createPhone: (req, res, next) => {
     const phone = new Phone();
     phone.name = req.body.name;
     phone.technology = req.body.technology;
@@ -51,10 +42,10 @@ module.exports = (server) => {
       }
       helpers.success(res, next, user);
     });
-  });
+  },
 
-  // Store phones from list - jsut for the demo
-  server.post('/sotre/phones/from/list', (req, res, next) => {
+  // POST: Store phones from list - jsut for the demo
+  storeDemoPhonesList: (req, res, next) => {
     Phone.find({}, (err, phones) => {
       if (phones.length > 0) {
         helpers.failure(res, next, 'Phones list is already stored', 500);
@@ -70,13 +61,10 @@ module.exports = (server) => {
         );
       }
     });
-  });
+  },
 
-  // PUT ===>
-  // update phone
-  server.put('/phone/:id', (req, res, next) => {
-    // validations
-
+  // PUT: update phone
+  updatePhone: (req, res, next) => {
     Phone.findOne({ _id: req.params.id }, (err, phone) => {
       if (err) {
         helpers.failure(res, next, 'Sommethig went wrong when fetchig phone from database', 500);
@@ -98,8 +86,7 @@ module.exports = (server) => {
         helpers.success(res, next, phone);
       });
     });
-  });
+  }
 
-
-  // DELETE ===>
+  // DELETE: methods
 };
