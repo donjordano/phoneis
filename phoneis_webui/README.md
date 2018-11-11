@@ -1,8 +1,8 @@
-# phoneis_webui
+# VueJS PhoneIs web UI
 
 > Simple test phone booking system web app
 
-## Build Setup
+### Build Setup
 
 ``` bash
 # install dependencies
@@ -15,4 +15,6 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### What's done:
+  This small app includes so far only Login/SignUp part.
+  TODO: Dashboard need to be implemented.
