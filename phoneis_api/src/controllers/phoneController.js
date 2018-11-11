@@ -3,7 +3,7 @@ const Phone = require('../models/Phone');
 const fonoApi = require('../fonoapi/fonoapi');
 const demoPhoneList = require('../config/phonesList');
 
-module.exports = (server) => {
+module.exports = {
 
   // GET: all phones
   listAllPhones: (req, res, next) => {

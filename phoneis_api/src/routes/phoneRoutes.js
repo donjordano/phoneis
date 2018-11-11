@@ -24,6 +24,6 @@ router.post('/login', passport.authenticate('local', {
   failureFlash: true,
 }));
 
-router.get('/login', UserController.login);
+// router.get('/login', UserController.login);
 
 module.exports = router;
