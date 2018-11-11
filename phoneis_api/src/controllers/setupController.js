@@ -21,16 +21,20 @@ module.exports = (server, plugins, restifyValidator) => {
       passwordField: 'password',
     },
     (username, password, done) => {
-      return userService.verifyCredentials(username, password).then(loggedUser => done(null, loggedUser)).catch((error) => { done(error, false, { message: error.message }); });
+      return userService.verifyCredentials(username, password)
+        .then(loggedUser => done(null, loggedUser))
+        .catch((error) => { 
+          done(error, false, { message: error.message });
+        });
     },
   ));
-  
   // JWT Strategy (to validate JWT tokens)
   passport.use(new JWTstrategy({
     secretOrKey: jwtSecret,
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
   }, (jwtPayload, done) => {
-    return userService.getUserById(jwtPayload._id).then((foundUser) => {
+    return userService.getUserById(jwtPayload._id)
+      .then((foundUser) => {
       return done(null, foundUser);
     }).catch((error) => {
       return done(error);

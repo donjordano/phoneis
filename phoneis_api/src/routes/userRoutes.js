@@ -4,7 +4,7 @@ const { ensureAuthenticated } = require('../utils');
 const router = new Router();
 const UserController = require('../controllers/userController.js');
 
-router.post('/', UserController.createUser);
+router.post('', UserController.createUser);
 
 // Protected endpoints
 router.get('/:id', UserController.getUser);
