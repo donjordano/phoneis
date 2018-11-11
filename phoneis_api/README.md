@@ -12,6 +12,7 @@
 ### Testing:
   TODO: test need to be implemented
   Unfortunately, the time limit didn't allow me to write proper tests.
+  The API can be tested with Postman: [PhoneIs shared collection for testing user](https://www.getpostman.com/collections/238429ac78ae4ea425eb)
 
 ### Deployment:
   So far the project can be run only on local env.
